@@ -10,13 +10,20 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>build-all</artifactId>
-  <packaging>pom</packaging>
+  <artifactId>shared-kernel</artifactId>
+  <packaging>jar</packaging>
 
-  <modules>
-    <module>../bl</module>
-    <module>../shared-kernel</module>
-  </modules>
+  <dependencies>
+    <dependency>
+      <groupId>javax.persistence</groupId>
+      <artifactId>javax.persistence-api</artifactId>
+      <version>2.2</version>
+    </dependency>
+  </dependencies>
 
+  <properties>
+    <maven.compiler.source>15</maven.compiler.source>
+    <maven.compiler.target>15</maven.compiler.target>
+  </properties>
 
 </project>

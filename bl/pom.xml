@@ -13,12 +13,12 @@
   <artifactId>bl</artifactId>
   <packaging>jar</packaging>
   <dependencies>
-
     <dependency>
-      <groupId>javax.persistence</groupId>
-      <artifactId>javax.persistence-api</artifactId>
-      <version>2.2</version>
+      <groupId>pl.ag.diet-app</groupId>
+      <artifactId>shared-kernel</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
     </dependency>
+
 
 
     <dependency>

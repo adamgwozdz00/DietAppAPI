@@ -3,8 +3,9 @@ package pl.ag.bl.food;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import pl.ag.bl.sharedkernel.AggregateId;
-import pl.ag.bl.sharedkernel.NutritionalValue;
+import shared.AggregateId;
+import shared.NutritionalValue;
+
 
 @Entity
 @Embeddable

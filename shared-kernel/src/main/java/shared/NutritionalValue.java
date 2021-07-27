@@ -1,4 +1,4 @@
-package pl.ag.bl.sharedkernel;
+package shared;
 
 import java.math.BigDecimal;
 import java.util.Objects;

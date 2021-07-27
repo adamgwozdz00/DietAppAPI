@@ -1,4 +1,4 @@
-package pl.ag.bl.sharedkernel;
+package shared;
 
 import java.io.Serializable;
 import java.util.Objects;
