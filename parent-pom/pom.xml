@@ -1,22 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-
-  <groupId>pl.ag.diet-app</groupId>
   <artifactId>parent-pom</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
 
+  <dependencies>
+    <dependency>
+      <artifactId>junit-jupiter-api</artifactId>
+      <groupId>org.junit.jupiter</groupId>
+      <scope>test</scope>
+      <version>5.7.2</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <groupId>org.junit.jupiter</groupId>
+      <scope>test</scope>
+      <version>5.7.2</version>
+    </dependency>
+  </dependencies>
+  <groupId>pl.ag.diet-app</groupId>
+  <modelVersion>4.0.0</modelVersion>
   <modules>
     <module>../build-all</module>
   </modules>
+
+  <packaging>pom</packaging>
 
   <properties>
     <maven.compiler.source>15</maven.compiler.source>
     <maven.compiler.target>15</maven.compiler.target>
   </properties>
+
+  <version>0.0.1-SNAPSHOT</version>
 
 
 </project>

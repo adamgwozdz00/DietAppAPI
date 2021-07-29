@@ -2,22 +2,37 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <artifactId>bl</artifactId>
+  <artifactId>db</artifactId>
   <dependencies>
     <dependency>
-      <artifactId>javax.persistence-api</artifactId>
-      <groupId>javax.persistence</groupId>
-      <version>2.2</version>
+      <artifactId>bl</artifactId>
+      <groupId>${project.groupId}</groupId>
+      <version>${project.version}</version>
     </dependency>
+
     <dependency>
-      <artifactId>spring-core</artifactId>
+      <artifactId>hibernate-core</artifactId>
+      <groupId>org.hibernate</groupId>
+      <version>5.5.4.Final</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>spring-jdbc</artifactId>
       <groupId>org.springframework</groupId>
       <version>5.3.9</version>
     </dependency>
+
+    <dependency>
+      <artifactId>postgresql</artifactId>
+      <groupId>org.postgresql</groupId>
+      <version>42.2.14</version>
+    </dependency>
+
   </dependencies>
 
   <modelVersion>4.0.0</modelVersion>
   <packaging>jar</packaging>
+
   <parent>
     <artifactId>build-all</artifactId>
     <groupId>pl.ag.diet-app</groupId>

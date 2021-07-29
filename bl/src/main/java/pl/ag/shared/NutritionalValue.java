@@ -1,4 +1,4 @@
-package shared;
+package pl.ag.shared;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -20,6 +20,10 @@ public class NutritionalValue {
     this.nutritionalValue = BigDecimal.valueOf(nutritionalValue);
   }
 
+  public static NutritionalValue ZERO() {
+    return new NutritionalValue(0);
+  }
+
   public void add(NutritionalValue nutritionalValue) {
     this.nutritionalValue = this.nutritionalValue.add(nutritionalValue.nutritionalValue);
   }
@@ -38,10 +42,6 @@ public class NutritionalValue {
 
   public boolean compare(NutritionalValue nutritionalValue) {
     return this.nutritionalValue.compareTo(nutritionalValue.nutritionalValue) == 0;
-  }
-
-  public static NutritionalValue ZERO() {
-    return new NutritionalValue(0);
   }
 
   @Override

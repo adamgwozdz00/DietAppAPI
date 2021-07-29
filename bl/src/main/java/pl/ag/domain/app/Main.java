@@ -1,4 +1,4 @@
-package pl.ag.bl.app;
+package pl.ag.domain.app;
 
 public class Main {
 

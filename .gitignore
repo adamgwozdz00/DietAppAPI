@@ -5,3 +5,5 @@ target
 *.json
 *.txt
 
+# too large file you can get it on your own machine using DIET_APP_V3_CSV_TO_SQL_CONVERTER
+migrations/src/main/resources/db/migration/V2__insert_into_food.sql

@@ -1,4 +1,4 @@
-package shared;
+package pl.ag.shared;
 
 import java.io.Serializable;
 import java.util.Objects;
