@@ -1,5 +1,7 @@
 package pl.ag.domain.food;
 
+import pl.ag.shared.AggregateId;
+
 public class FoodService {
 
   private final FoodRepository repository;
@@ -7,5 +9,6 @@ public class FoodService {
   public FoodService(FoodRepository repository) {
     this.repository = repository;
   }
+
 
 }
