@@ -1,8 +1,8 @@
 package pl.ag.domain.table;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import pl.ag.domain.user.UserId;
 import pl.ag.shared.AggregateId;
 
 @Entity
@@ -18,18 +19,18 @@ class FoodTable {
   @Id
   private AggregateId id;
 
-  private AggregateId userId;
+  private UserId userId;
 
-  private Date date;
+  private LocalDate date;
 
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JoinColumn(name = "table_id")
   private List<FoodLog> foodLogList;
 
-  FoodTable(AggregateId userId) {
+  FoodTable(UserId userId) {
     this.id = AggregateId.generate();
     this.userId = userId;
-    this.date = new Date();
+    this.date = LocalDate.now();
     this.foodLogList = new ArrayList<>();
   }
 
