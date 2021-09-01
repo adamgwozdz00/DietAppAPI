@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.ag.domain.user.UserId;
 import pl.ag.shared.AggregateId;
 
 class FoodTableTest {
@@ -18,7 +19,7 @@ class FoodTableTest {
 
   @BeforeEach
   void setUp() {
-    this.table = new FoodTable(new AggregateId("1"));
+    this.table = new FoodTable(UserId.userId(1));
     this.food = new HashMap<>();
   }
 

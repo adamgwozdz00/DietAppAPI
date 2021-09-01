@@ -28,9 +28,6 @@ class FoodLogTest {
     assertFoodWeight("1", 100);
   }
 
-  private void assertLogId(long logId) {
-    assertTrue(this.foodLog.isIdTheSame(new LogId(logId)));
-  }
 
   @Test
   void test2() {
@@ -39,6 +36,10 @@ class FoodLogTest {
     changeFoodWeight(0);
 
     assertException(IllegalArgumentException.class, "Food weight is lower than zero!");
+  }
+
+  private void assertLogId(long logId) {
+    assertTrue(this.foodLog.isIdTheSame(new LogId(logId)));
   }
 
   private void assertFoodWeight(String foodId, double foodWeight) {
