@@ -5,7 +5,7 @@ import java.util.Objects;
 import javax.persistence.Embeddable;
 
 @Embeddable
-class LogId implements Serializable {
+public class LogId implements Serializable {
 
   private long logId;
 
