@@ -11,53 +11,26 @@ class Food {
   final BigDecimal fat;
   final BigDecimal carbohydrates;
 
-  private Food(Builder builder) {
-    this.name = builder.name;
-    this.weight = builder.weight;
-    this.calories = builder.calories;
-    this.protein = builder.protein;
-    this.fat = builder.fat;
-    this.carbohydrates = builder.carbohydrates;
+
+  Food(String name, BigDecimal weight, BigDecimal calories, BigDecimal protein,
+      BigDecimal fat, BigDecimal carbohydrates) {
+    this.name = name;
+    this.weight = weight;
+    this.calories = calories;
+    this.protein = protein;
+    this.fat = fat;
+    this.carbohydrates = carbohydrates;
   }
 
-  public static class Builder {
-
-    private final String name;
-    private final BigDecimal weight;
-
-    private BigDecimal calories = BigDecimal.ZERO;
-    private BigDecimal protein = BigDecimal.ZERO;
-    private BigDecimal fat = BigDecimal.ZERO;
-    private BigDecimal carbohydrates = BigDecimal.ZERO;
-
-    public Builder(String name, BigDecimal weight) {
-      this.name = name;
-      this.weight = weight;
-    }
-
-    public Builder calories(BigDecimal val) {
-      this.calories = val;
-      return this;
-    }
-
-    public Builder protein(BigDecimal val) {
-      this.protein = val;
-      return this;
-    }
-
-    public Builder fat(BigDecimal val) {
-      this.fat = val;
-      return this;
-    }
-
-    public Builder carbohydrates(BigDecimal val) {
-      this.carbohydrates = val;
-      return this;
-    }
-
-    public Food build() {
-      return new Food(this);
-    }
+  @Override
+  public String toString() {
+    return "Food{" +
+        "name='" + name + '\'' +
+        ", weight=" + weight +
+        ", calories=" + calories +
+        ", protein=" + protein +
+        ", fat=" + fat +
+        ", carbohydrates=" + carbohydrates +
+        '}';
   }
-
 }
