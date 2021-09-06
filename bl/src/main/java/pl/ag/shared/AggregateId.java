@@ -3,11 +3,14 @@ package pl.ag.shared;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
+import javax.persistence.Embeddable;
 
-
+@Embeddable
 public class AggregateId implements Serializable {
 
-  private final String aggregateId;
+  private String aggregateId;
+
+  protected AggregateId(){}
 
   public AggregateId(String aggregateId) {
     if (aggregateId == null) {

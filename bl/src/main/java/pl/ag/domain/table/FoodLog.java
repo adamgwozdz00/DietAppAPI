@@ -1,6 +1,10 @@
 package pl.ag.domain.table;
 
 import java.math.BigDecimal;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +18,10 @@ class FoodLog {
   @Id
   @GeneratedValue
   private Long logId;
+  @Embedded
+  @AttributeOverrides({
+      @AttributeOverride(name = "aggregateId", column = @Column(name = "foodId"))
+  })
   private AggregateId foodId;
   private BigDecimal foodWeight;
 
