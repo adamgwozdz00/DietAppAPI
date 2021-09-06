@@ -73,7 +73,7 @@ class FoodTable {
   }
 
   private boolean foodNotInTable(LogId foodLogId) {
-    return this.foodLogList.stream().anyMatch(foodLog -> foodLog.isIdTheSame(foodLogId));
+    return this.foodLogList.stream().noneMatch(foodLog -> foodLog.isIdTheSame(foodLogId));
   }
 
 

@@ -50,7 +50,7 @@ class FoodLogTest {
   }
 
   private void log(long logId, String foodId, double weight) {
-    this.foodLog = new FoodLog(new LogId(logId), new AggregateId(foodId),
+    this.foodLog = new FoodLog(logId, new AggregateId(foodId),
         BigDecimal.valueOf(weight));
   }
 

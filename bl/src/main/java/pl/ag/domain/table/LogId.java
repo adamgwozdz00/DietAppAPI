@@ -7,7 +7,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class LogId implements Serializable {
 
-  private long logId;
+  private Long logId;
 
   protected LogId() {
   }
@@ -38,7 +38,7 @@ public class LogId implements Serializable {
     return Objects.hash(logId);
   }
 
-  public long getLogId() {
+  public Long getLogId() {
     return logId;
   }
 }

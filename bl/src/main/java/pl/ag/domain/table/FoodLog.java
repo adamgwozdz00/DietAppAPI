@@ -3,16 +3,17 @@ package pl.ag.domain.table;
 import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import pl.ag.shared.AggregateId;
 
 @Entity
+@IdClass(LogId.class)
 class FoodLog {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private LogId id;
+  @GeneratedValue
+  private Long logId;
   private AggregateId foodId;
   private BigDecimal foodWeight;
 
@@ -20,8 +21,8 @@ class FoodLog {
   }
 
   // test constructor, don't use in production!
-  FoodLog(LogId id, AggregateId foodId, BigDecimal foodWeight) {
-    this.id = id;
+  FoodLog(Long logId, AggregateId foodId, BigDecimal foodWeight) {
+    this.logId = logId;
     this.foodId = foodId;
     vetoIfFoodWeightLowerThanOneGram(foodWeight);
     this.foodWeight = foodWeight;
@@ -45,8 +46,8 @@ class FoodLog {
     this.foodWeight = foodWeight;
   }
 
-  boolean isIdTheSame(LogId id) {
-    return this.id.equals(id);
+  boolean isIdTheSame(LogId logId) {
+    return this.logId.equals(logId.getLogId());
   }
 
   boolean isFoodIdAndWeightMatches(AggregateId foodId, BigDecimal weight) {
