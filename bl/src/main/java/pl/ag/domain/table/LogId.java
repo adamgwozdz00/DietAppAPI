@@ -16,7 +16,7 @@ public class LogId implements Serializable {
     this.logId = logId;
   }
 
-  static LogId logId(long logId) {
+  public static LogId logId(long logId) {
     return new LogId(logId);
   }
 
