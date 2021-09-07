@@ -12,4 +12,6 @@ public interface FoodQuery {
   List<Food> getFoodsByName(String foodName);
 
   List<UserFood> getDailyUserFood(UserId userId, LocalDate date);
+
+  FoodSum sumUserFood(UserId userId, LocalDate date);
 }

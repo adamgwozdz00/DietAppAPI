@@ -12,6 +12,7 @@ public class FoodQueryImpl implements FoodQuery {
   private final String QUERY_FOOD_BY_ID = "SELECT * from Food WHERE id = '%s'";
   private final String QUERY_FOOD_BY_NAME = "SELECT * FROM Food WHERE name LIKE %s";
   private final String QUERY_USER_FOOD_LIST = "SELECT * FROM USERFOOD WHERE userid = %d and date = '%s'";
+  private final String QUERY_FOR_USER_FOOD_SUM = "SELECT * FROM FOODSUM WHERE userid = %d and date = '%s'";
 
   public FoodQueryImpl(JdbcTemplate jdbcTemplate) {
     this.jdbcTemplate = jdbcTemplate;
@@ -33,6 +34,13 @@ public class FoodQueryImpl implements FoodQuery {
   public List<UserFood> getDailyUserFood(UserId userId, LocalDate date) {
     return this.jdbcTemplate
         .query(String.format(QUERY_USER_FOOD_LIST, userId.getUserId(), date), new UserFoodMapper());
+  }
+
+  @Override
+  public FoodSum sumUserFood(UserId userId, LocalDate date) {
+    return this.jdbcTemplate
+        .queryForObject(String.format(QUERY_FOR_USER_FOOD_SUM, userId.getUserId(), date),
+            new FoodSumMapper());
   }
 
 }

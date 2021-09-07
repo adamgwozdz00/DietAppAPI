@@ -48,8 +48,15 @@ class FoodQueryImplTest {
   @Test
   void test3() {
     for (UserFood food : foodQuery.getDailyUserFood(UserId.userId(1), LocalDate.now())) {
-      System.out.println(food.logId.getLogId() + " " + food.food.calories + " " + food.food.weight);
+      System.out.println(
+          food.logId.getLogId() + " " + food.food.name + " " + food.food.calories + " "
+              + food.food.weight);
     }
+  }
+
+  @Test
+  void test4() {
+    System.out.println(foodQuery.sumUserFood(UserId.userId(1), LocalDate.now()));
   }
 
 }
