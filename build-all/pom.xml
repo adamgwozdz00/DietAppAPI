@@ -9,6 +9,7 @@
     <module>../bl</module>
     <module>../db</module>
     <module>../migrations</module>
+    <module>../ws</module>
   </modules>
   <packaging>pom</packaging>
 
