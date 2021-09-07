@@ -3,11 +3,8 @@ package pl.ag;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import javax.sql.DataSource;
 import org.flywaydb.core.Flyway;
-import org.flywaydb.core.internal.jdbc.DriverDataSource;
 import org.postgresql.Driver;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 public class RunMigrations {
@@ -29,6 +26,7 @@ public class RunMigrations {
     dataSource.setPassword(properties.getProperty("flyway.password"));
 
     Flyway flyway = Flyway.configure().dataSource(dataSource).load();
+    flyway.repair();
     flyway.migrate();
   }
 
