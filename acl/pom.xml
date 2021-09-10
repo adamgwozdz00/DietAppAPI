@@ -2,44 +2,25 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <artifactId>migrations</artifactId>
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>flyway-maven-plugin</artifactId>
-        <groupId>org.flywaydb</groupId>
-        <version>7.11.4</version>
-      </plugin>
-    </plugins>
-
-  </build>
+  <artifactId>acl</artifactId>
   <dependencies>
     <dependency>
-      <artifactId>db</artifactId>
+      <artifactId>bl</artifactId>
       <groupId>${project.groupId}</groupId>
       <version>${project.version}</version>
     </dependency>
 
-    <dependency>
-      <artifactId>flyway-core</artifactId>
-      <groupId>org.flywaydb</groupId>
-      <version>7.11.4</version>
-    </dependency>
-
-    <dependency>
-      <artifactId>flyway-maven-plugin</artifactId>
-      <groupId>org.flywaydb</groupId>
-      <version>7.11.4</version>
-    </dependency>
 
   </dependencies>
 
   <modelVersion>4.0.0</modelVersion>
-  <packaging>jar</packaging>
+
   <parent>
     <artifactId>parent-pom</artifactId>
     <groupId>pl.ag.diet-app</groupId>
     <relativePath>../parent-pom/pom.xml</relativePath>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+
+
 </project>

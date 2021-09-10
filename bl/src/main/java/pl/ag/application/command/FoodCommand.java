@@ -1,11 +1,15 @@
 package pl.ag.application.command;
 
+import org.springframework.stereotype.Service;
+import pl.ag.application.shared.UsersService;
 import pl.ag.domain.table.FoodTableService;
 import pl.ag.domain.table.LogId;
 import pl.ag.domain.user.UserId;
 import pl.ag.shared.AggregateId;
 
+@Service
 public class FoodCommand {
+
   private final UsersService usersService;
   private final FoodTableService foodTableService;
 
@@ -15,21 +19,20 @@ public class FoodCommand {
     this.foodTableService = foodTableService;
   }
 
-  public void addCommand(AggregateId foodId,double foodCount){
+  public void addCommand(AggregateId foodId, double foodCount) {
     UserId userId = this.usersService.getLoggedUserId();
-    this.foodTableService.addFood(foodId,foodCount,userId);
+    this.foodTableService.addFood(foodId, foodCount, userId);
   }
 
   public void removeCommand(LogId logId) throws ClassNotFoundException {
     UserId userId = this.usersService.getLoggedUserId();
-    this.foodTableService.removeFood(logId,userId);
+    this.foodTableService.removeFood(logId, userId);
   }
 
   public void updateCommand(LogId logId, double foodCount) throws ClassNotFoundException {
     UserId userId = this.usersService.getLoggedUserId();
-    this.foodTableService.updateFood(logId,foodCount,userId);
+    this.foodTableService.updateFood(logId, foodCount, userId);
   }
-
 
 
 }
