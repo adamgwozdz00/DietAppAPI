@@ -1,11 +1,14 @@
 package pl.ag.application.query;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 import pl.ag.domain.user.UserId;
 import pl.ag.shared.AggregateId;
 
+@Component
 public class FoodQueryImpl implements FoodQuery {
 
   private final JdbcTemplate jdbcTemplate;
@@ -26,8 +29,10 @@ public class FoodQueryImpl implements FoodQuery {
 
   @Override
   public List<Food> getFoodsByName(String foodName) {
-    return this.jdbcTemplate
-        .query(String.format(QUERY_FOOD_BY_NAME, "'%" + foodName + "%'"), new FoodRowMapper());
+    if (!foodName.isEmpty())
+      return this.jdbcTemplate
+          .query(String.format(QUERY_FOOD_BY_NAME, "'%" + foodName + "%'"), new FoodRowMapper());
+    return Collections.EMPTY_LIST;
   }
 
   @Override
