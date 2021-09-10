@@ -1,4 +1,4 @@
-package pl.ag.application.command;
+package pl.ag.application.shared;
 
 import org.springframework.stereotype.Service;
 import pl.ag.domain.user.UserId;
