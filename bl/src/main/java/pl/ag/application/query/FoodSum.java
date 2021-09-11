@@ -1,13 +1,15 @@
 package pl.ag.application.query;
 
 import java.math.BigDecimal;
+import lombok.Getter;
 
-class FoodSum {
+@Getter
+public class FoodSum {
 
-  final BigDecimal calories;
-  final BigDecimal protein;
-  final BigDecimal fat;
-  final BigDecimal carbohydrates;
+  private final BigDecimal calories;
+  private final BigDecimal protein;
+  private final BigDecimal fat;
+  private final BigDecimal carbohydrates;
 
   FoodSum(BigDecimal calories, BigDecimal protein, BigDecimal fat,
       BigDecimal carbohydrates) {

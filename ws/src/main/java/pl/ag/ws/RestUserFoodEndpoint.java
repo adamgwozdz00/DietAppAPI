@@ -1,39 +1,77 @@
 package pl.ag.ws;
 
-import java.util.Arrays;
+import java.time.LocalDate;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import pl.ag.application.command.FoodCommand;
+import pl.ag.application.query.Food;
+import pl.ag.application.query.FoodQueryLandlord;
+import pl.ag.application.query.FoodSum;
+import pl.ag.application.query.UserFood;
+import pl.ag.domain.table.LogId;
+import pl.ag.shared.AggregateId;
 
 @RestController
 public class RestUserFoodEndpoint {
 
-  @GetMapping("/food")
-  public String[] loadUserFoodList() {
-    return new String[]{"CHICKEN", "FISH", "EGG"};
+  @Autowired
+  private FoodCommand foodCommand;
+
+  @Autowired
+  private FoodQueryLandlord foodQueryLandlord;
+
+  @GetMapping("/")
+  public String test() {
+    return "hello";
+  }
+
+  @GetMapping("/food/account")
+  @ResponseBody
+  //TODO changing diet table day
+  public List<UserFood> loadUserFoodList() {
+    return foodQueryLandlord.getDailyUserFood(LocalDate.now());
   }
 
   @GetMapping("/food/list")
-  public List<String> loadFoodsByName(@RequestParam String foodName) {
-    System.out.println(foodName);
-    return Arrays.asList("Boiled Chicken ", "Grilled Chicken", "Raw Chicken");
+  @ResponseBody
+  public List<Food> loadFoodsByName(@RequestParam String foodName) {
+    return foodQueryLandlord.getFoodsByName(foodName);
   }
 
-
-  @PostMapping("food/add")
-  public String addFood() {
-    return "adding food...";
+  @GetMapping("/food/account/sum")
+  @ResponseBody
+  public FoodSum countTotalNutritional() {
+    return foodQueryLandlord.sumUserFood(LocalDate.now());
   }
 
-  @PostMapping("food/remove")
-  public String removeFood() {
-    return "removing food...";
+  @PostMapping("food/account/add")
+  public String addFood(@RequestParam String foodId, @RequestParam double foodCount) {
+    this.foodCommand.addCommand(new AggregateId(foodId), foodCount);
+    return "SUCCESS";
   }
 
-  @PostMapping("food/update")
-  public String updateFood() {
-    return "updating food...";
+  @PostMapping("food/account/remove")
+  public String removeFood(@RequestParam long logId) {
+    try {
+      this.foodCommand.removeCommand(LogId.logId(logId));
+      return "SUCCESS";
+    } catch (ClassNotFoundException e) {
+      return "FAILURE";
+    }
+  }
+
+  @PostMapping("food/account/update")
+  public String updateFood(@RequestParam long logId, @RequestParam double foodCount) {
+    try {
+      this.foodCommand.updateCommand(LogId.logId(logId), foodCount);
+      return "SUCCESS";
+    } catch (ClassNotFoundException e) {
+      return "FAILURE";
+    }
   }
 }

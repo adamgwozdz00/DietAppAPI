@@ -1,8 +1,10 @@
 package pl.ag.application.query;
 
+import lombok.Getter;
 import pl.ag.domain.table.LogId;
 
-class UserFood {
+@Getter
+public class UserFood {
 
   final LogId logId;
   final Food food;
@@ -20,4 +22,6 @@ class UserFood {
         ", food=" + food +
         '}';
   }
+
+
 }

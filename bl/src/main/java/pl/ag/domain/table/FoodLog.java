@@ -9,20 +9,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.Table;
 import pl.ag.shared.AggregateId;
 
 @Entity
+@Table(name = "foodlog")
 @IdClass(LogId.class)
 class FoodLog {
 
   @Id
   @GeneratedValue
+  @Column(name = "logid")
   private Long logId;
+
   @Embedded
   @AttributeOverrides({
-      @AttributeOverride(name = "aggregateId", column = @Column(name = "foodId"))
+      @AttributeOverride(name = "aggregateId", column = @Column(name = "foodid"))
   })
   private AggregateId foodId;
+  @Column(name = "foodweight")
   private BigDecimal foodWeight;
 
   private FoodLog() {

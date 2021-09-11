@@ -40,6 +40,6 @@
     <artifactId>parent-pom</artifactId>
     <groupId>pl.ag.diet-app</groupId>
     <relativePath>../parent-pom/pom.xml</relativePath>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1-ALPHA</version>
   </parent>
 </project>

@@ -8,15 +8,18 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import pl.ag.domain.user.UserId;
 import pl.ag.shared.AggregateId;
 
 @Entity
+@Table(name = "foodtable")
 class FoodTable {
 
   @EmbeddedId
@@ -25,6 +28,11 @@ class FoodTable {
   })
   private AggregateId id;
 
+
+  @Embedded
+  @AttributeOverrides({
+      @AttributeOverride(name = "userId", column = @Column(name = "userid"))
+  })
   private UserId userId;
 
   private LocalDate date;
