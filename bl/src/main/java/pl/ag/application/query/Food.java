@@ -1,19 +1,23 @@
 package pl.ag.application.query;
 
 import java.math.BigDecimal;
+import lombok.Getter;
 
-class Food {
+@Getter
+public class Food {
 
-  final String name;
-  final BigDecimal weight;
-  final BigDecimal calories;
-  final BigDecimal protein;
-  final BigDecimal fat;
-  final BigDecimal carbohydrates;
+  private final String foodId;
+  private final String name;
+  private final BigDecimal weight;
+  private final BigDecimal calories;
+  private final BigDecimal protein;
+  private final BigDecimal fat;
+  private final BigDecimal carbohydrates;
 
 
-  Food(String name, BigDecimal weight, BigDecimal calories, BigDecimal protein,
+  Food(String foodId, String name, BigDecimal weight, BigDecimal calories, BigDecimal protein,
       BigDecimal fat, BigDecimal carbohydrates) {
+    this.foodId = foodId;
     this.name = name;
     this.weight = weight;
     this.calories = calories;
@@ -21,6 +25,7 @@ class Food {
     this.fat = fat;
     this.carbohydrates = carbohydrates;
   }
+
 
   @Override
   public String toString() {

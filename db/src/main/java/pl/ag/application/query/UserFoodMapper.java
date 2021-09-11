@@ -11,7 +11,8 @@ public class UserFoodMapper implements RowMapper<UserFood> {
   public UserFood mapRow(ResultSet resultSet, int i) throws SQLException {
 
     return new UserFood(LogId.logId(resultSet.getLong("logid")),
-        new Food(resultSet.getString("name"), resultSet.getBigDecimal("foodweight"),
+        new Food(resultSet.getString("id"), resultSet.getString("name"),
+            resultSet.getBigDecimal("foodweight"),
             resultSet.getBigDecimal("calories"), resultSet.getBigDecimal("protein"),
             resultSet.getBigDecimal("fat"),
             resultSet.getBigDecimal("carbohydrates")));

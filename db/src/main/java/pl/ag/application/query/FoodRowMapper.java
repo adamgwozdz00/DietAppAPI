@@ -8,7 +8,8 @@ public class FoodRowMapper implements RowMapper<Food> {
 
   @Override
   public Food mapRow(ResultSet resultSet, int i) throws SQLException {
-    return new Food(resultSet.getString("name"), resultSet.getBigDecimal("weight"),
+    return new Food(resultSet.getString("id"), resultSet.getString("name"),
+        resultSet.getBigDecimal("weight"),
         resultSet.getBigDecimal("calories"), resultSet.getBigDecimal("protein"),
         resultSet.getBigDecimal("fat"), resultSet.getBigDecimal("carbohydrates"));
   }
