@@ -1,0 +1,4 @@
+FROM adoptopenjdk/openjdk11
+WORKDIR .
+COPY /target/migrations-0.0.1-ALPHA.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]

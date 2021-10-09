@@ -2,17 +2,7 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <artifactId>build-all</artifactId>
   <modelVersion>4.0.0</modelVersion>
-
-  <modules>
-    <module>../bl</module>
-    <module>../db</module>
-    <module>../migrations</module>
-    <module>../ws</module>
-    <module>../acl</module>
-  </modules>
-  <packaging>pom</packaging>
 
   <parent>
     <artifactId>parent-pom</artifactId>
@@ -20,6 +10,17 @@
     <relativePath>../parent-pom/pom.xml</relativePath>
     <version>0.0.1-ALPHA</version>
   </parent>
+
+  <artifactId>build-all</artifactId>
+
+  <modules>
+    <module>../bl</module>
+    <module>../db</module>
+    <module>../ws</module>
+    <module>../acl</module>
+  </modules>
+  <packaging>pom</packaging>
+
 
 
 </project>
