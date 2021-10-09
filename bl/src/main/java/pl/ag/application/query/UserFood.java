@@ -6,11 +6,11 @@ import pl.ag.domain.table.LogId;
 @Getter
 public class UserFood {
 
-  final LogId logId;
+  final Long logId;
   final Food food;
 
 
-  UserFood(LogId logId, Food food) {
+  UserFood(Long logId, Food food) {
     this.logId = logId;
     this.food = food;
   }

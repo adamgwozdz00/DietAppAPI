@@ -54,7 +54,7 @@ class FoodQueryImplTest {
   void test3() {
     for (UserFood food : foodQuery.getDailyUserFood(UserId.userId(1), LocalDate.now())) {
       System.out.println(
-          food.logId.getLogId() + " " + food.food.getName() + " " + food.food.getCalories() + " "
+          food.logId + " " + food.food.getName() + " " + food.food.getCalories() + " "
               + food.food.getWeight());
     }
   }
