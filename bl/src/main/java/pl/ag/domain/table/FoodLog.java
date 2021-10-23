@@ -5,6 +5,7 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,13 +15,13 @@ import pl.ag.shared.AggregateId;
 
 @Entity
 @Table(name = "foodlog")
-@IdClass(LogId.class)
 class FoodLog {
 
-  @Id
-  @GeneratedValue
-  @Column(name = "logid")
-  private Long logId;
+  @EmbeddedId
+  @AttributeOverrides({
+      @AttributeOverride(name = "aggregateId", column = @Column(name = "logid"))
+  })
+  private AggregateId logId;
 
   @Embedded
   @AttributeOverrides({
@@ -34,7 +35,7 @@ class FoodLog {
   }
 
   // test constructor, don't use in production!
-  FoodLog(Long logId, AggregateId foodId, BigDecimal foodWeight) {
+  FoodLog(AggregateId logId, AggregateId foodId, BigDecimal foodWeight) {
     this.logId = logId;
     this.foodId = foodId;
     vetoIfFoodWeightLowerThanOneGram(foodWeight);
@@ -43,7 +44,8 @@ class FoodLog {
 
   FoodLog(AggregateId foodId,
       BigDecimal foodWeight) {
-    this(foodId);
+    this.logId = AggregateId.generate();
+    this.foodId = foodId;
     vetoIfFoodWeightLowerThanOneGram(foodWeight);
     this.foodWeight = foodWeight;
   }
@@ -59,8 +61,8 @@ class FoodLog {
     this.foodWeight = foodWeight;
   }
 
-  boolean isIdTheSame(LogId logId) {
-    return this.logId.equals(logId.getLogId());
+  boolean isIdTheSame(AggregateId logId) {
+    return this.logId.equals(logId);
   }
 
   boolean isFoodIdAndWeightMatches(AggregateId foodId, BigDecimal weight) {

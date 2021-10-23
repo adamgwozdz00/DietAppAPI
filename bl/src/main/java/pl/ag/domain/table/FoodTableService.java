@@ -22,13 +22,13 @@ public class FoodTableService {
     this.foodTableRepository.save(foodTable);
   }
 
-  public void removeFood(LogId logId, UserId userId) throws ClassNotFoundException {
+  public void removeFood(AggregateId logId, UserId userId) throws ClassNotFoundException {
     FoodTable foodTable = this.loadTodayFoodTable(userId);
     foodTable.removeFood(logId);
     this.foodTableRepository.save(foodTable);
   }
 
-  public void updateFood(LogId logId, double foodCount, UserId userId)
+  public void updateFood(AggregateId logId, double foodCount, UserId userId)
       throws ClassNotFoundException {
     FoodTable foodTable = this.loadTodayFoodTable(userId);
     foodTable.updateFood(logId, BigDecimal.valueOf(foodCount));

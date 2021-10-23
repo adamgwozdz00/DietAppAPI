@@ -3,7 +3,6 @@ package pl.ag.application.command;
 import org.springframework.stereotype.Service;
 import pl.ag.application.shared.UsersService;
 import pl.ag.domain.table.FoodTableService;
-import pl.ag.domain.table.LogId;
 import pl.ag.domain.user.UserId;
 import pl.ag.shared.AggregateId;
 
@@ -24,12 +23,12 @@ public class FoodCommand {
     this.foodTableService.addFood(foodId, foodCount, userId);
   }
 
-  public void removeCommand(LogId logId) throws ClassNotFoundException {
+  public void removeCommand(AggregateId logId) throws ClassNotFoundException {
     UserId userId = this.usersService.getLoggedUserId();
     this.foodTableService.removeFood(logId, userId);
   }
 
-  public void updateCommand(LogId logId, double foodCount) throws ClassNotFoundException {
+  public void updateCommand(AggregateId logId, double foodCount) throws ClassNotFoundException {
     UserId userId = this.usersService.getLoggedUserId();
     this.foodTableService.updateFood(logId, foodCount, userId);
   }

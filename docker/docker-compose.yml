@@ -1,6 +1,31 @@
 version: '3'
 
 services:
+  db:
+    image: 'postgres:12.5'
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=diet
+    restart: always
+    ports:
+      - "5432:5432"
+
+  flyway:
+    image: flyway/flyway:latest
+    container_name: my-flyway
+    environment:
+      - FLYWAY_USER=postgres
+      - FLYWAY_PASSWORD=postgres
+      - FLYWAY_URL=jdbc:postgresql://db:5432/diet
+      - FLYWAY_BASELINE_ON_MIGRATE=false
+    command: -locations=filesystem:/flyway/sql -connectRetries=60 migrate
+    volumes:
+      - ${PWD}/import:/flyway/sql
+    depends_on:
+      - db
+
   app:
     image: 'agwozdz/wsjar'
     build:
@@ -13,31 +38,9 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/diet
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=validate
     ports:
-      - 8081:8080
-
-  flyway:
-    image: flyway/flyway:latest
-    container_name: my-flyway
-    environment:
-      - FLYWAY_USER=postgres
-      - FLYWAY_PASSWORD=postgres
-      - FLYWAY_URL=jdbc:postgresql://db:5432/diet
-    command: -locations=filesystem:/flyway/sql -connectRetries=60 migrate
-    volumes:
-      - ${PWD}/import:/flyway/sql
-    depends_on:
-      - db
-
-  db:
-    image: 'postgres'
-    container_name: db
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=diet
+      - "8081:8080"
     restart: always
-    ports:
-      - 5433:5432
+
 

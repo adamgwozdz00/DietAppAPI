@@ -55,13 +55,13 @@ class FoodTable {
     this.foodLogList.add(new FoodLog(foodId, foodWeight));
   }
 
-  void removeFood(LogId foodLogId) {
+  void removeFood(AggregateId foodLogId) {
     this.vetoIfFoodNotInTable(foodLogId);
 
     this.foodLogList.removeIf(foodLog -> foodLog.isIdTheSame(foodLogId));
   }
 
-  void updateFood(LogId foodLogId, BigDecimal foodWeight) {
+  void updateFood(AggregateId foodLogId, BigDecimal foodWeight) {
     this.vetoIfFoodNotInTable(foodLogId);
 
     this.foodLogList.stream()
@@ -80,13 +80,13 @@ class FoodTable {
         .anyMatch(foodLog -> foodLog.isFoodIdAndWeightMatches(foodId, foodWeight));
   }
 
-  private void vetoIfFoodNotInTable(LogId foodId) {
+  private void vetoIfFoodNotInTable(AggregateId foodId) {
     if (this.foodNotInTable(foodId)) {
       throw new IllegalArgumentException(String.format("Food with id: %s not in table.", foodId));
     }
   }
 
-  private boolean foodNotInTable(LogId foodLogId) {
+  private boolean foodNotInTable(AggregateId foodLogId) {
     return this.foodLogList.stream().noneMatch(foodLog -> foodLog.isIdTheSame(foodLogId));
   }
 

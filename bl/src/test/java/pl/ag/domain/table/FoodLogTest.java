@@ -20,26 +20,26 @@ class FoodLogTest {
 
   @Test
   void test1() {
-    log(1, "1", 300);
+    log("1", "1", 300);
 
     changeFoodWeight(100);
 
-    assertLogId(1);
+    assertLogId("1");
     assertFoodWeight("1", 100);
   }
 
 
   @Test
   void test2() {
-    log(1, "1", 300);
+    log("1", "1", 300);
 
     changeFoodWeight(0);
 
     assertException(IllegalArgumentException.class, "Food weight is lower than zero!");
   }
 
-  private void assertLogId(long logId) {
-    assertTrue(this.foodLog.isIdTheSame(new LogId(logId)));
+  private void assertLogId(String logId) {
+    assertTrue(this.foodLog.isIdTheSame(new AggregateId(logId)));
   }
 
   private void assertFoodWeight(String foodId, double foodWeight) {
@@ -49,8 +49,8 @@ class FoodLogTest {
 
   }
 
-  private void log(long logId, String foodId, double weight) {
-    this.foodLog = new FoodLog(logId, new AggregateId(foodId),
+  private void log(String logId, String foodId, double weight) {
+    this.foodLog = new FoodLog(new AggregateId(logId), new AggregateId(foodId),
         BigDecimal.valueOf(weight));
   }
 

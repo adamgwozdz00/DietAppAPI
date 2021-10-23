@@ -1,16 +1,16 @@
 package pl.ag.application.query;
 
 import lombok.Getter;
-import pl.ag.domain.table.LogId;
+import pl.ag.shared.AggregateId;
 
 @Getter
 public class UserFood {
 
-  final LogId logId;
+  final AggregateId logId;
   final Food food;
 
 
-  UserFood(LogId logId, Food food) {
+  UserFood(AggregateId logId, Food food) {
     this.logId = logId;
     this.food = food;
   }

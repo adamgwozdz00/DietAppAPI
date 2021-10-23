@@ -13,7 +13,6 @@ import pl.ag.application.query.Food;
 import pl.ag.application.query.FoodQueryLandlord;
 import pl.ag.application.query.FoodSum;
 import pl.ag.application.query.UserFood;
-import pl.ag.domain.table.LogId;
 import pl.ag.shared.AggregateId;
 
 @RestController
@@ -56,9 +55,9 @@ public class RestUserFoodEndpoint {
   }
 
   @PostMapping("food/account/remove")
-  public String removeFood(@RequestParam long logId) {
+  public String removeFood(@RequestParam String logId) {
     try {
-      this.foodCommand.removeCommand(LogId.logId(logId));
+      this.foodCommand.removeCommand(new AggregateId(logId));
       return "SUCCESS";
     } catch (ClassNotFoundException e) {
       return "FAILURE";
@@ -66,9 +65,9 @@ public class RestUserFoodEndpoint {
   }
 
   @PostMapping("food/account/update")
-  public String updateFood(@RequestParam long logId, @RequestParam double foodCount) {
+  public String updateFood(@RequestParam String logId, @RequestParam double foodCount) {
     try {
-      this.foodCommand.updateCommand(LogId.logId(logId), foodCount);
+      this.foodCommand.updateCommand(new AggregateId(logId), foodCount);
       return "SUCCESS";
     } catch (ClassNotFoundException e) {
       return "FAILURE";
